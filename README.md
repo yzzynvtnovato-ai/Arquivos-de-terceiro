@@ -9,7 +9,10 @@ gui.Name = "BKMenuGui"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- BOTÃO FLUTUANTE
+-- =====================================
+-- BOTÃO FLUTUANTE BK MENU
+-- =====================================
+
 local button = Instance.new("TextButton")
 button.Name = "BKMenuButton"
 button.Size = UDim2.fromOffset(145, 45)
@@ -32,7 +35,10 @@ stroke.Color = Color3.fromRGB(160, 160, 170)
 stroke.Thickness = 1.3
 stroke.Parent = button
 
+-- =====================================
 -- PAINEL PRINCIPAL
+-- =====================================
+
 local panel = Instance.new("Frame")
 panel.Name = "BKMainPanel"
 panel.Size = UDim2.fromOffset(340, 310)
@@ -50,7 +56,10 @@ panelStroke.Color = Color3.fromRGB(120, 220, 240)
 panelStroke.Thickness = 1.5
 panelStroke.Parent = panel
 
--- ABA LATERAL
+-- =====================================
+-- BARRA LATERAL
+-- =====================================
+
 local sidebar = Instance.new("Frame")
 sidebar.Name = "Sidebar"
 sidebar.Size = UDim2.new(0, 105, 1, -16)
@@ -67,7 +76,10 @@ sidebarStroke.Color = Color3.fromRGB(100, 225, 245)
 sidebarStroke.Thickness = 1.2
 sidebarStroke.Parent = sidebar
 
+-- =====================================
 -- BOTÃO ID
+-- =====================================
+
 local idButton = Instance.new("TextButton")
 idButton.Name = "IDButton"
 idButton.Size = UDim2.fromOffset(85, 38)
@@ -88,7 +100,10 @@ idStroke.Color = Color3.fromRGB(150, 240, 255)
 idStroke.Thickness = 1.2
 idStroke.Parent = idButton
 
+-- =====================================
 -- ÁREA DE CONTEÚDO
+-- =====================================
+
 local content = Instance.new("Frame")
 content.Name = "Content"
 content.Size = UDim2.new(1, -130, 1, -16)
@@ -114,12 +129,18 @@ title.TextSize = 17
 title.Font = Enum.Font.GothamBold
 title.Parent = content
 
--- ABRIR E FECHAR PAINEL
-button.MouseButton1Click:Connect(function()
+-- =====================================
+-- ABRIR E FECHAR O PAINEL
+-- =====================================
+
+button.Activated:Connect(function()
     panel.Visible = not panel.Visible
 end)
 
+-- =====================================
 -- ARRASTAR BOTÃO FLUTUANTE
+-- =====================================
+
 local dragging = false
 local dragStart
 local startPosition
@@ -127,6 +148,7 @@ local startPosition
 button.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1
     or input.UserInputType == Enum.UserInputType.Touch then
+
         dragging = true
         dragStart = input.Position
         startPosition = button.Position
@@ -144,6 +166,7 @@ UserInputService.InputChanged:Connect(function(input)
         input.UserInputType == Enum.UserInputType.MouseMovement
         or input.UserInputType == Enum.UserInputType.Touch
     ) then
+
         local delta = input.Position - dragStart
 
         button.Position = UDim2.new(
